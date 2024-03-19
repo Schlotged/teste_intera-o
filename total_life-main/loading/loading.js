@@ -10,7 +10,7 @@ function showLoading () {
     imgContainer.classList.add('img-container'); // Adicionando uma classe para estilização CSS
 
     const img = document.createElement('img');
-    img.src = './assests/logo2.png';
+    img.src = '../assests/logo2.png';
     img.alt = ''; 
 
     imgContainer.appendChild(img);

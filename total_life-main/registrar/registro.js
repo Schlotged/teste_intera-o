@@ -2,50 +2,61 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('mainform');
     const email = document.getElementById('email');
     const senha = document.getElementById('password');
-    const registrar = document.querySelector('.btn-register'); // Use querySelector para selecionar um único elemento
-    const reset = document.getElementById('reset-password'); // Use querySelector para selecionar um único elemento
+    const confirmeSenha = document.getElementById("confirm-password");
+    const registerButton = document.getElementById("register-button");
+    const loginButton = document.getElementById("login-button");
 
     form.addEventListener('submit', function (e) {
         e.preventDefault();
         if (checkInputs()) {
-            login();
+            //alert('Sucesso');
+            toggleRegisterButtonDisable();
+
+        } else {
+           if ( senha, senha.value.trim().length >= 8) {
+                alert('Senhas nao coincidem')
+           }
+            
         }
     });
 
-    registrar.addEventListener('click', function (e) { // Adicione um evento de clique ao botão de registro
-        e.preventDefault(); // Evite o comportamento padrão de envio do formulário
-        register(); // Chame a função de registro
-    });
+    registerButton.addEventListener('click', () => {
+        register();
+    })
 
     email.addEventListener('input', () => {
         validateField(email, isEmail(email.value.trim()), 'Email não é válido!');
+        toggleRegisterButtonDisable();
     });
 
     senha.addEventListener('input', () => {
         validateField(senha, senha.value.trim().length >= 8, 'Senha tem que ter mais de 8 caracteres!');
+        toggleRegisterButtonDisable();
     });
 
-    reset.addEventListener('click', () => {
-        // Verificar se o campo de email está vazio
-        if (email.value.trim() === '') {
-            alert('Por favor, insira seu endereço de email.');
-            return; // Encerrar a função se o campo estiver vazio
+    confirmeSenha.addEventListener('input', () => {
+        if (senha.value.trim() !== '') {
+            validateField(confirmeSenha, confirmeSenha.value === senha.value, 'As senhas não coincidem!');
+            toggleRegisterButtonDisable();
         }
-        recoverPassword();
     });
 
     function checkInputs() {
         let isValid = true;
         validateField(email, isEmail(email.value.trim()), 'Email não é válido!');
         validateField(senha, senha.value.trim().length >= 8, 'Senha tem que ter mais de 8 caracteres!');
+        validateField(confirmeSenha, confirmeSenha.value.trim().length >= 8, 'Senha tem que ter mais de 8 caracteres!');
+        validateField(confirmeSenha, confirmeSenha.value === senha.value, 'As senhas não coincidem!');
 
         document.querySelectorAll('.custome-input').forEach((control) => {
             if (control.classList.contains('error')) {
                 isValid = false;
+                
             }
         });
 
         return isValid;
+        
     }
 
     function validateField(input, condition, errorMessage) {
@@ -77,57 +88,46 @@ document.addEventListener('DOMContentLoaded', function () {
         return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(email);
     }
 
-    function showModal() {
-        if (checkInputs()) {
-            const modal = document.getElementById('successModal');
-            modal.style.display = 'block';
-    
-            setTimeout(() => {
-                modal.style.display = 'none';
-                window.location.href = "./kanban-main/site/index.html";
-            }, 3000); // Aguarda 3 segundos antes de redirecionar para a próxima página
-        }
+    function toggleRegisterButtonDisable() {
+        registerButton.disabled = !isFormValid();
+        loginButton.disabled = !isFormValid();
     }
 
-    function login() {
-        showLoading();
-        firebase.auth().signInWithEmailAndPassword(email.value, password.value).then(response => {
-            showModal();
-        }).catch(error => {
-            hideLoading();
-            alert(getErrorMessage(error));
-        });
+    function isFormValid () {
+        const e_mail = email.value.trim();
+        if (!email || !e_mail) {
+            return false;
+        }
+        const s_enha = senha.value.trim();
+        if (!senha || s_enha.length < 8) { // Ajuste: a condição deve ser s_enha.length < 8
+            return false;
+        }
+    
+        const confirme_password = confirmeSenha.value.trim();
+        if (s_enha !== confirme_password ) { // Ajuste: a condição deve ser s_enha !== confirme_password
+            return false;
+        }
+    
+        return true;
     }
 
     function register() {
-        //
         showLoading();
-        window.location.href = "./registrar/register.html";
-    }
-    
-
-    function getErrorMessage(error) {
-        if (error.code == "auth/user-not-found") {
-            return "Usuário não encontrado";
-        }
-        if (error.code ==  "auth/invalid-credential") {
-            return "Credencial inválida";
-        }
-        if (error.code ==  "auth/wrong-password") {
-            return "Senha invalida";
-        }
-            return error.message;
-    }
-
-    function recoverPassword () {
-        showLoading();
-        firebase.auth().sendPasswordResetEmail(email.value.trim()).then(() => {
-            hideLoading();
-            alert('Email enviado com sucesso')
+        const emaill = email.value;
+        const password = senha.value;
+        firebase.auth().createUserWithEmailAndPassword(
+        emaill, password
+        ).then( () => {
+            hideLoading;
+            window.location.href = '../kanban-main/site/index.html'
         }).catch(error => {
-            hideLoading();
+            hideLoading;
             alert(getErrorMessage(error));
-        });
+        })
+    }
+
+    function getErrorMessage (error) {
+        return error.message;
     }
 
 });

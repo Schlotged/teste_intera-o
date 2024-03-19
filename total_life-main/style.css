@@ -16,31 +16,14 @@ body{
 
 }
 
-.logo img{
-    width: 260px;
-    position: center;
-    margin-top: 15px;
+.logo img {
+    width: 150px; /* Defina a largura desejada em pixels */
+    width: 300px; /* Mantenha a proporção da imagem */
+    display: block;
+    margin: 0 auto;
+    margin-bottom: .4rem;
 }
 
-.logo{
-    position: absolute;
-    top: 22px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo a{
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-    color: #464646;
-}
-
-a{
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
 
 .container{
     width: 440px;
@@ -51,6 +34,9 @@ a{
 
 .container h1{
     font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: .6rem;
 }
 
 .container .social-login{
@@ -140,6 +126,14 @@ a{
     transition: all 0.3s ease;
 }
 
+.container form .custome-input .i{
+    position: absolute;
+    font-size: 25px;
+    right: 10px;
+    top: 14px;
+    transition: all 0.3s ease;
+}
+
 .container form .custome-input .icon{
     position: center;
     font-size: 25px;
@@ -168,7 +162,27 @@ a{
     cursor: pointer;
 }
 
+.container form .registrar{
+    width: 100%;
+    margin-top: 30px;
+    background: #6495ED;
+    color: #fff;
+    border: none;
+    line-height: 50px;
+    font-size: 18px;
+    letter-spacing: 0.025rem;
+    font-weight: 800;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
 .container form .login:hover{
+    background: #5222fd;
+}
+
+.container form .registrar:hover{
     background: #5222fd;
 }
 
@@ -194,10 +208,8 @@ a{
 
 @media screen and (max-width: 920px) {
     
-    .container img{
-        display: none;
-        width: 50%; /* Ajuste o tamanho conforme necessário */
-
+    .logo img{
+        width: 250px;
     }
 
     .container form{
