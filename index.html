@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Login - Total Life</title>
+</head>
+<body>
+    
+    <div class="logo">
+        <img src="assests/logo2.png">
+        <a href="#"></a>
+    </div>
+
+    <div class="container">
+        <h1>Entre com a sua conta </h1>
+        <div class="social-login">
+            <button class="google">
+                <i class='bx bxl-google'></i>
+                Use Google
+            </button>
+            <button class="google">
+                <i class='bx bx-envelope'></i>
+                Use Outlook
+            </button>
+        </div>
+        <div class="divider">
+            <div class="line"></div>
+            <p>Or</p>
+            <div class="line"></div>
+        </div>
+        <form id="mainform" >
+            <label for="email">Email:</label>
+            <div class="custome-input">
+                <input type="email" id="email" name="email" placeholder="Seu Email" autocomplete="off">
+                <!-- <i class='bx bx-at'></i> -->
+                <i class="icon"></i>
+            </div>
+            <label for="password">Senha:</label>
+            <div class="custome-input">
+                <input type="password" id="password" name="password" placeholder="Sua senha">
+                
+                <!-- <i class='bx bx-lock' ></i> -->
+                <i class="icon"></i>
+            </div>
+            <button class="login" >Login</button>
+            <div class="links">
+                <a href="#" >Reset da senha</a>
+                <a href="#" class="btn-register" type="button">Não tem conta criada?</a>
+            </div>
+        </form>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Success!</h2>
+            <p>Seu usuário esta válido!</p>
+            <p>Pode continuar.</p>
+        </div>
+    </div>
+
+
+
+    <script src="script.js"></script>
+    <script src="./loading/loading.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+    
+    <script >
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyC746HD9xgPDxy3ywKueWA_B1F9GgRQMlQ",
+          authDomain: "plataforma-tl.firebaseapp.com",
+          projectId: "plataforma-tl",
+          storageBucket: "plataforma-tl.appspot.com",
+          messagingSenderId: "983565469174",
+          appId: "1:983565469174:web:84bba3d3396e7cf0d573d7"
+        };
+      
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+      </script>
+</body>
+</html>
