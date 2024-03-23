@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>KanBan</title>
+  </head>
+  <body>
+    <div id="app">
+      <nav>
+        <img src="./assests/logo.svg" alt="logo do site" class="logo" />
+        <ul>
+          <li>
+            <a href="#" class="active">
+              <ion-icon name="tablet-portrait"></ion-icon>
+              Boards
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <ion-icon name="people"></ion-icon>
+              Equipes
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <ion-icon name="document-text"></ion-icon>
+              Relatórios
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <ion-icon name="cog"></ion-icon>
+              Ajustes
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <main>
+        <div class="inner">
+          <section class="title-avatar">
+
+            <h1>
+              Meu KanBan <img class="pencil" src="./assests/pencil.svg" alt="editar titulo" />
+            </h1>
+
+            <div class="menubar">
+
+              <button class="button-img" onclick="toggleMenu()">
+                <img src="https://github.com/schlotged.png" alt="avatar" />
+              </button>
+
+              <div class="menu-options" id="menuOptions">
+                <button onclick="logout()">Sair</button>
+              </div>
+
+            </div>
+            
+          </section>
+
+          <section class="filter">
+            <button>
+              <ion-icon name="filter-outline"></ion-icon>
+              <span>Filtrar</span>
+            </button>
+
+            <div class="input-wrapper">
+              <ion-icon name="search-outline"></ion-icon>
+              <input
+                type="text"
+                placeholder="Busque por cards, assunstos ou responsáveis..."
+              />
+            </div>
+          </section>
+
+          <button class="add-card">+</button>
+
+          <!-- section kanban-->
+          <section class="kanban" id="kan-ban" >
+
+            <div class="todo a-fazer">
+              <h2>A fazer</h2>
+              <div class="cards dropzone" id="todo">
+
+              </div>
+            </div>
+            <div  class="doing fazendo">
+              <h2>Fazendo</h2>
+              <div class="cards dropzone" id="doing">
+                
+              </div>
+            </div>
+            <div class="done feito">
+              <h2>Feito</h2>
+              <div class="cards dropzone" id="done">
+                
+              </div>
+            </div>
+
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"></script>
+    
+    <script src="../../firebase-init.js"></script>
+    <script src="../../auth-guard.js"></script>
+    <script src="./script.js"></script>
+    <script src="../../loading/loading.js"></script>
+
+
+  </body>
+</html>

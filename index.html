@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Login - Total Life</title>
+</head>
+<body>
+
+    <div class="container">
+
+
+        <form id="mainform" >
+
+            <div class="logo">
+                <img src="assests/logo2.png">
+                <a href="#"></a>
+            </div>
+
+            <h1>Entre com a sua conta </h1>
+
+            <label for="email">Email:</label>
+            <div class="custome-input">
+                <input type="email" id="email" name="email" placeholder="Seu Email" autocomplete="off">
+                <!-- <i class='bx bx-at'></i> -->
+                <i class="icon"></i>
+            </div>
+            <label for="password">Senha:</label>
+            <div class="custome-input">
+                <input type="password" id="password" name="password" placeholder="Sua senha">
+                
+                <!-- <i class='bx bx-lock' ></i> -->
+                <i class="icon"></i>
+            </div>
+            <button class="login" >Login</button>
+            <div class="links">
+                <a href="#" id="reset-password" >Reset da senha</a>
+                <a href="#" class="btn-register" type="button">Não tem conta criada?</a>
+            </div>
+        </form>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Success!</h2>
+            <p>Seu usuário esta válido!</p>
+            <p>Pode continuar.</p>
+        </div>
+    </div>
+
+
+
+    <script src="script.js"></script>
+    <script src="./loading/loading.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"></script>
+    
+    <script src="firebase-init.js"></script>
+</body>
+</html>
