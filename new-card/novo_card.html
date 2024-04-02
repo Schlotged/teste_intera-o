@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Novo card - teste</title>
+</head>
+<body>
+    <div class="container-new-card">
+        <label id="label-new">Novo card</label>
+        <form id="new-card">
+            <label for="title">Insira um titulo</label>
+            <div>
+                <input type="text" id="title_card" class="title-new-card" placeholder="Titulo" autocomplete="off">
+            </div>
+            <label for="texto">Texto</label>
+            <div>
+                <textarea id="text-new-card" placeholder="Texto" cols="3" rows="5"></textarea>
+            </div>
+            <label for="data">Insira uma data</label>
+            <div>
+                <input type="date" id="data-new-card" placeholder="Texto" autocomplete="off">
+                
+            </div>
+            <label for="Aviso">Aviso</label>
+            <div>
+                <select name="Avisos" id="avisos-new-card">
+                    <option value="0"></option>
+                    <option value="1">Urgente</option>
+                    <option value="2">Médio</option>
+                    <option value="3">Leve</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
