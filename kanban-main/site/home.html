@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="/new-card/style.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
       rel="stylesheet"
@@ -13,35 +15,50 @@
   </head>
   <body>
     <div id="app">
-      <nav>
-        <img src="./assests/logo.svg" alt="logo do site" class="logo" />
-        <ul>
+
+      <nav class="sidebar">
+        <div class="div-header-sidebar">
+          <header class="sidebar-header">
+          <button type="button" class="sidebar-burguer" onclick="toggleSidebar()">
+            <i class='bx bx-menu'></i>
+          </button>
+          <img src="/assests/logo2.png" alt="logo do site" class="sidebar-logo" />
+          </header>
+        </div>
+
+
+        <ul class="sidebar-menu">
           <li>
             <a href="#" class="active">
               <ion-icon name="tablet-portrait"></ion-icon>
-              Boards
+              <span>Boards</span>
             </a>
           </li>
           <li>
             <a href="#">
               <ion-icon name="people"></ion-icon>
-              Equipes
+              <span>Equipes</span>
+              
             </a>
           </li>
           <li>
             <a href="#">
               <ion-icon name="document-text"></ion-icon>
-              Relatórios
+              <span>Relatórios</span>
+              
             </a>
           </li>
           <li>
             <a href="#">
               <ion-icon name="cog"></ion-icon>
-              Ajustes
+              <span>Ajustes</span>
+              
             </a>
           </li>
         </ul>
+        
       </nav>
+
       <main>
         <div class="inner">
           <section class="title-avatar">
@@ -52,12 +69,12 @@
 
             <div class="menubar">
 
-              <button class="button-img" onclick="toggleMenu()">
-                <img src="https://github.com/schlotged.png" alt="avatar" />
+              <button type="button" class="button-img" onclick="toggleMenu()">
+                <i class='bx bx-user'></i>
               </button>
 
               <div class="menu-options" id="menuOptions">
-                <button onclick="logout()">Sair</button>
+                <button type="button" onclick="logout()">Sair</button>
               </div>
 
             </div>
@@ -87,19 +104,79 @@
             <div class="todo a-fazer">
               <h2>A fazer</h2>
               <div class="cards dropzone" id="todo" data-type="todo">
-
+                <table class="card-t">
+                  <thead>
+                    <tr>
+                      <th width="119">
+                        <b>Processo</b>
+                      </th>
+                      <th width="140">
+                        <b>Observação</b>
+                      </th>
+                      <th width="100">
+                        <b>Data Agend</b>
+                      </th>
+                      <th width="150">
+                        <b>Prestador</b>
+                      </th>
+                      <th width="100">
+                        <b>Colaborador</b>
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
               </div>
             </div>
             <div  class="doing fazendo">
               <h2>Fazendo</h2>
-              <div class="cards dropzone" id="doing">
-                
+              <div class="cards dropzone" id="doing" data-type="doing">
+                <table class="card-t">
+                  <thead>
+                    <tr>
+                      <th width="119">
+                        <b>Processo</b>
+                      </th>
+                      <th width="140">
+                        <b>Observação</b>
+                      </th>
+                      <th width="100">
+                        <b>Data Agend</b>
+                      </th>
+                      <th width="150">
+                        <b>Prestador</b>
+                      </th>
+                      <th width="100">
+                        <b>Colaborador</b>
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
               </div>
             </div>
             <div class="done feito">
               <h2>Feito</h2>
-              <div class="cards dropzone" id="done">
-                
+              <div class="cards dropzone" id="done" data-type="done">
+                <table class="card-t">
+                  <thead>
+                    <tr>
+                      <th width="119">
+                        <b>Processo</b>
+                      </th>
+                      <th width="140">
+                        <b>Observação</b>
+                      </th>
+                      <th width="100">
+                        <b>Data Agend</b>
+                      </th>
+                      <th width="150">
+                        <b>Prestador</b>
+                      </th>
+                      <th width="100">
+                        <b>Colaborador</b>
+                      </th>
+                    </tr>
+                  </thead>
+                </table>
               </div>
             </div>
 
@@ -112,27 +189,33 @@
       <span class="close" onclick="closeModal()">&times;</span>
       <label id="label-new">Novo card</label>
       <form id="new-card">
-          <label for="title">Insira um titulo</label>
+          <label for="title">Processo</label>
           <div>
-              <input type="text" id="title_card" class="title-new-card" placeholder="Titulo" autocomplete="off">
+              <select name="Prestador" id="title_card" class="title-new-card" placeholder="Processo">
+                <option value="Agendamento Privado"></option>
+                <option value="Agendamento Publico">Agendamento Publico</option>
+                <option value="Agendamento Postal">Agendamento Postal</option>
+                <option value="Chamado ao suporte">Chamado ao suporte</option>
+            </select>
           </div>
-          <label for="texto">Texto</label>
+          <label for="Observação" >Observação</label>
           <div>
-              <textarea id="text-new-card" placeholder="Texto" cols="3" rows="5"></textarea>
+              <textarea title="Observação Agendamento" id="text-new-card" placeholder="Observação Agendamento" cols="3" rows="5"></textarea>
           </div>
-          <label for="data">Insira uma data</label>
+          <label for="data-agendamento">Insira uma data</label>
           <div>
-              <input type="date" id="data-new-card" placeholder="Texto" autocomplete="off">
-              
+              <input type="date" id="data-new-card" autocomplete="off">
           </div>
-          <label for="Aviso">Aviso</label>
+          <label for="Prestador">Prestador</label>
           <div>
-              <select name="Avisos" id="avisos-new-card">
-                  <option value="">Selecione um aviso</option>
-                  <option value="Urgente">Urgente</option>
-                  <option value="Médio">Médio</option>
-                  <option value="aguardo">Em aguardo</option>
+              <select name="Prestador" id="avisos-new-card">
+                  <option value=""></option>
+                  <option value="Total Life">Total Life</option>
               </select>
+          </div>
+          <label for="Colaborador">Colaborador</label>
+          <div>
+            <input type="text" id="colaborador-new-card" autocomplete="off">
           </div>
           
           <button type="button" id="save-new-card" class="save" onclick="addCardToNewCard()" disabled="true">Salvar</button>

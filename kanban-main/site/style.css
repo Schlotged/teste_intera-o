@@ -43,15 +43,89 @@ main {
 }
 
 nav {
-  padding: 3.2rem 2.7rem 0 3.5rem;
+  padding: 1rem 1rem 0 1rem;
+
 }
+
+.sidebar{
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 68px;
+  height: 100%;
+  transition: all 0.4s;
+}
+
+.sidebar-header{
+  display: flex;
+  align-items: center;
+  height: 100px;
+  padding: 0 1.5rem 0 0;
+  border-left: 3px solid transparent;
+  transition: all 0.4s;
+
+}
+
+body.open .div-header-sidebar{
+  background-color: white;
+  width: 210px;
+  height: auto;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.sidebar-header:hover{
+  border-left: 3px solid white;
+}
+
+
+.sidebar-burguer{
+  width: auto;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+}
+
+.sidebar-burguer i{
+  width: 40px;
+}
+
+
+.sidebar-burguer > ion-icon, body.open .sidebar-burguer > ion-icon{
+  font-size: 20px;
+
+  transition: all 0.4s;
+}
+
+.sidebar-menu > a > ion-icon{
+  font-size: 25px;
+  color: #f9f9f9;
+  transition: all 0.4s;
+}
+
+.sidebar-menu > a:hover > ion-icon, .sidebar-menu > a:hover > span{
+  color: #fff;
+}
+
+.sidebar-menu > li > a > span{
+  color: #f9f9f9;
+  opacity: 0;
+  transition: all 0.4s;
+}
+
+body.open .sidebar-menu > li > a > span{
+  opacity: 1;
+  transition: all 0.4s;
+}
+
+
 
 ul {
   margin-top: 6em;
   list-style: none;
   display: grid;
   gap: 3.6rem;
-
   min-width: 11.5rem;
 }
 
@@ -61,17 +135,27 @@ li a {
   align-items: center;
   gap: 1.6rem;
   font-weight: 500;
+  height: 55px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  line-height: 1;
+  border-left: 3px solid transparent;
+  transition: all 0.4s;
 }
 
-a.active,
-a:hover {
+
+
+a:hover{
+  border-left: 3px solid white;
   color: white;
   font-weight: 700;
 }
 
+
 a ion-icon {
   font-size: 2rem;
 }
+
 
 section.title-avatar {
   display: flex;
@@ -86,19 +170,38 @@ section.title-avatar {
   width: 6.4rem;
   height: 6.4rem;
   border-radius: 50%;
+  
 }
 
 .title-avatar h1 > img {
   width: 40px;
 }
 
+.sidebar-logo{
+  width: auto;
+  height: 40px;
+  padding-left: 10px;
+}
+
+body.open > .sidebar > .sidebar-header > .sidebar-logo{
+  opacity: 0;
+  transition: all 0.4s;
+  
+}
+
+body.open .sidebar {
+  width: 225px;
+}
+
 
 .button-img {
-  border: none;
-  border-radius: 50%;
+  border: 3px solid #000;
+  border-radius: 100%;
   position: relative; /* Adicionando posicionamento relativo ao botão */
   background: none;
   cursor: pointer;
+  font-size: 52px;
+  
 }
 
 .menu-options {
@@ -202,24 +305,22 @@ section.filter {
 
 section.kanban {
   display: flex;
-  gap: 4rem;
   
 }
 
 .kanban {
   display: flex;
-  gap: 4rem;
+  gap: 1rem;
   font-size: 80%;
 }
 
 
 section.kanban > * {
   flex: 1;
-  padding: 0.2rem 2rem;
+  padding: 0.2rem;
 }
 
 .dropzone > * {
-  flex: 1;
   padding: 2.4rem;
 }
 
@@ -231,75 +332,36 @@ section.kanban h2 {
 }
 
 .card {
-  padding: 2.4rem;
-  background: #FFFFFF;
-  box-shadow: .0rem .4rem 1.6rem #EAE2FD;
-  border-radius: 0.8rem;
-  line-height: 130%;
-  margin-bottom: 1.6rem;
+  padding: 18px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  line-height: 100%;
+  margin-bottom: 0.3rem;
   flex: 1; /* Permita que os cards cresçam para ocupar o espaço disponível */
-}
-
-.card h3 {
-  font-size: 1.4rem;
-  color: #403937;
-}
-
-.card p {
-  font-weight: 500;
-  font-size: 1.4rem;
-  color: #756966;
-  margin-top: 1rem;
-  margin-bottom: 1.4rem;
-}
-
-.data-span{
   display: flex;
   justify-content: space-between;
-  font-weight: 800;
-  color: #7c3aed;
-  font-size: 14px;
-  margin-bottom: 2rem;
+
+  
+}
+
+
+.data-span{
+  font-weight: 500;
+  color: none;
 }
 
 
 .card .tags {
-  margin-top: 1rem;
-  display: flex;
-  align-items: center;
-  gap: .8rem;
-  color: #7c3aed;
   font-weight: 500;
-}
-
-.card .tags span {
-  font-size: 1.1rem;
-  line-height: 130%;
-  background: #E2D6FF;
-  border-radius: .8rem;
-  padding: .4rem .8rem;
-}
-
-.card-tags {
-  font-size: 1.1rem;
-  line-height: 130%;
-  background: #E2D6FF;
-  border-radius: .8rem;
-  padding: .4rem .8rem;
-  
-}
-
-.card-tags{
-  padding: .4rem .8rem;
-  font-weight: 600;
-  color: #7c3aed;
+  border: 1px solid #dddddd;
+  padding: 10px
 }
 
 
 .cards {
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
+  
 }
 
 .highlight {
@@ -320,8 +382,13 @@ section.kanban h2 {
 
 .dropzone > .card {
   width: 100%; /* Defina o tamanho desejado */
-  height: auto; /* Permita que a altura se ajuste automaticamente */
+  height: 100%; /* Permita que a altura se ajuste automaticamente */
+  height: 1000px;
+  padding: 1px 1px 1px 1px;
+  flex: 1;
+  
 }
+
 
 .dropzone > .cards {
   min-width: 200px; /* Defina a largura mínima desejada */
@@ -331,6 +398,14 @@ section.kanban h2 {
 .dropzone {
   min-width: 200px; /* Defina a largura mínima desejada */
   min-height: 100px; /* Defina a altura mínima desejada */
+  border: 1px solid #cac7c7;
+  border-radius: 9px;
+  padding: 10px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  
 }
 
 
@@ -348,27 +423,70 @@ section.kanban h2 {
 }
 
 .a-fazer .card {
-  border-left: 10px solid red;
+  border-left: 8px solid red;
 }
 
 .fazendo .card {
-  border-left: 10px solid blue;
+  border-left: 8px solid blue;
 }
 
 .feito .card {
-  border-left: 10px solid green;
+  border-left: 8px solid green;
 }
 
 .a-fazer .data-span{
-  color: red;
+  color: gray;
 }
 
-.fazendo .data-span{
-  color: blue;
+.card-t {
+  border-collapse: collapse;
+  width: 511px;
+  width: 100%;
 }
 
-.feito .data-span{
-  color: green;
+option{
+  font-weight: 500;
+  border: 1px solid #dddddd;
+  padding: 10px
 }
 
+.card-table {
+  border-collapse: collapse;
+  width: 500px;
+  flex: 1;
+}
+
+.card-table th {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.card-table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.card-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.card-t th {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.card-t td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.card-t tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
