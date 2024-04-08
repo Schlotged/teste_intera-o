@@ -1,6 +1,7 @@
 
 const cards = document.querySelectorAll('.card')
 const dropzones = document.querySelectorAll('.dropzone')
+let currentCardId; 
 
 // Adiciona ouvintes de eventos para os campos do formulário
 document.getElementById('title_card').addEventListener('input', toggleSaveButton);
@@ -52,6 +53,18 @@ function dragstart() {
     dropzones.forEach( dropzone => dropzone.classList.add('highlight'));
     // this = card
     this.classList.add('is-dragging');
+
+    this.dataset.cardId = this.querySelector('.card-table').id;
+
+    // Encontra o elemento do cartão dentro da zona de drop
+    const cardDrop = this.querySelector('.card-table'); 
+
+    // Obtém o idCard do elemento do cartão
+    currentCardId = cardDrop.dataset.cardId; 
+
+    console.log("ID do card arrastado:", currentCardId);
+
+
 }
 
 function drag() {
@@ -104,10 +117,8 @@ function drop() {
     
     this.classList.remove('over');
 
-    const cardDrop = this.querySelector('.card-table'); // Encontra o elemento do cartão dentro da zona de drop
-    const cardId = cardDrop.dataset.cardId; // Obtém o idCard do elemento do cartão
-    const cardType = this.getAttribute('data-type'); // Obtém o tipo da zona de drop
-
+    const cardType = this.getAttribute('data-type');
+    cardId = currentCardId;
     console.log("ID do card arrastado:", cardId);
     console.log("Tipo do card:", cardType);
     console.log("Tentando atualizar o tipo do cartão com ID:", cardId, "e tipo:", cardType);
@@ -122,7 +133,9 @@ function drop() {
                 const currentType = doc.data().type;
                 if (currentType !== cardType) {
                     // Apenas atualize se o tipo atual for diferente do novo tipo
+                    console.log('Atualizado')
                     return doc.ref.update({ type: cardType });
+
                 } else {
                     console.log("O tipo do cartão não foi alterado. Nenhuma atualização necessária.");
                 }
@@ -133,6 +146,7 @@ function drop() {
         .catch(error => {
             console.error(`Erro ao atualizar o tipo do cartão ${cardId} no Firebase:`, error);
         });
+    
 
 }
 
@@ -169,6 +183,7 @@ function addCardToScreen(cardData) {
         const table = document.createElement('table');
         table.classList.add('card-table');
         table.dataset.cardId = cardData.uid;
+        table.id = cardData.idCard;
 
         // Create table body
         const tbody = document.createElement('tbody');
