@@ -63,10 +63,7 @@
         <div class="inner">
           <section class="title-avatar">
 
-            <h1>
-              Meu KanBan <img class="pencil" src="./assests/pencil.svg" alt="editar titulo" />
-            </h1>
-
+            <h1>KanBan</h1>
             <div class="menubar">
 
               <button type="button" class="button-img" onclick="toggleMenu()">
@@ -101,82 +98,95 @@
           <!-- section kanban-->
           <section class="kanban" id="kan-ban" >
 
-            <div class="todo a-fazer">
-              <h2>A fazer</h2>
+            <div class="todo a-fazer" id="table-todo">
+              <div class="title-dropzone todo" onclick="enableEdit()">
+
+              </div>
+              
+              <table class="card-t" position="sticky">
+                <thead>
+                  <tr>
+                    <th width="119">
+                      <b>Processo</b>
+                    </th>
+                    <th width="140">
+                      <b>Observação</b>
+                    </th>
+                    <th width="100">
+                      <b>Data Agend</b>
+                    </th>
+                    <th width="150">
+                      <b>Prestador</b>
+                    </th>
+                    <th width="100">
+                      <b>Colaborador</b>
+                    </th>
+                  </tr>
+                </thead>
+              </table>
               <div class="cards dropzone" id="todo" data-type="todo">
-                <table class="card-t">
-                  <thead>
-                    <tr>
-                      <th width="119">
-                        <b>Processo</b>
-                      </th>
-                      <th width="140">
-                        <b>Observação</b>
-                      </th>
-                      <th width="100">
-                        <b>Data Agend</b>
-                      </th>
-                      <th width="150">
-                        <b>Prestador</b>
-                      </th>
-                      <th width="100">
-                        <b>Colaborador</b>
-                      </th>
-                    </tr>
-                  </thead>
-                </table>
+
               </div>
             </div>
-            <div  class="doing fazendo">
-              <h2>Fazendo</h2>
+
+            <div  class="doing fazendo" id="table-doing">
+              <div class="title-dropzone doing" onclick="enableEdit()">
+
+              </div>
+              
+              <table class="card-t">
+                <thead>
+                  <tr>
+                    <th width="119">
+                      <b>Processo</b>
+                    </th>
+                    <th width="140">
+                      <b>Observação</b>
+                    </th>
+                    <th width="100">
+                      <b>Data Agend</b>
+                    </th>
+                    <th width="150">
+                      <b>Prestador</b>
+                    </th>
+                    <th width="100">
+                      <b>Colaborador</b>
+                    </th>
+                  </tr>
+                </thead>
+              </table>
               <div class="cards dropzone" id="doing" data-type="doing">
-                <table class="card-t">
-                  <thead>
-                    <tr>
-                      <th width="119">
-                        <b>Processo</b>
-                      </th>
-                      <th width="140">
-                        <b>Observação</b>
-                      </th>
-                      <th width="100">
-                        <b>Data Agend</b>
-                      </th>
-                      <th width="150">
-                        <b>Prestador</b>
-                      </th>
-                      <th width="100">
-                        <b>Colaborador</b>
-                      </th>
-                    </tr>
-                  </thead>
-                </table>
+
               </div>
             </div>
-            <div class="done feito">
-              <h2>Feito</h2>
+
+            <div class="done feito" id="table-done">
+              <div class="title-dropzone done" onclick="enableEdit()">
+
+              </div>
+              <table class="card-t">
+                <thead>
+                  <tr>
+                    <th width="119">
+                      <b>Processo</b>
+                    </th>
+                    <th width="140">
+                      <b>Observação</b>
+                    </th>
+                    <th width="100">
+                      <b>Data Agend</b>
+                    </th>
+                    <th width="150">
+                      <b>Prestador</b>
+                    </th>
+                    <th width="100">
+                      <b>Colaborador</b>
+                    </th>
+                  </tr>
+                </thead>
+              </table>
               <div class="cards dropzone" id="done" data-type="done">
-                <table class="card-t">
-                  <thead>
-                    <tr>
-                      <th width="119">
-                        <b>Processo</b>
-                      </th>
-                      <th width="140">
-                        <b>Observação</b>
-                      </th>
-                      <th width="100">
-                        <b>Data Agend</b>
-                      </th>
-                      <th width="150">
-                        <b>Prestador</b>
-                      </th>
-                      <th width="100">
-                        <b>Colaborador</b>
-                      </th>
-                    </tr>
-                  </thead>
-                </table>
+
               </div>
             </div>
 

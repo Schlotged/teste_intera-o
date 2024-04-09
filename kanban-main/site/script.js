@@ -189,7 +189,7 @@ function addCardToScreen(cardData) {
         const tbody = document.createElement('tbody');
 
         const dataRow = document.createElement('tr');
-
+        dataRow.style.cursor = "pointer"
 
         const titleData = document.createElement('td');
         titleData.textContent = cardData.title;
@@ -202,15 +202,18 @@ function addCardToScreen(cardData) {
         textoData.style.textAlign = 'left';
         textoData.style.width = '140px';
 
+        const maxLength = 12; // Número máximo de palavras permitidas
+        const maxLines = 1; // Número máximo de linhas permitidas
+        textoData.textContent = truncateText(cardData.texto, maxLength, maxLines);
+
         dataRow.appendChild(textoData);
 
         const dateData = document.createElement('td');
         dateData.textContent = cardData.date;
-        dateData.style.textAlign = 'center';
+        dateData.style.textAlign = 'left';
         dateData.classList.add('data-span');
         dateData.style.width = '100px';
         dataRow.appendChild(dateData);
-
 
 
         const avisoData = document.createElement('td');
@@ -220,11 +223,13 @@ function addCardToScreen(cardData) {
         avisoData.style.width = '150px';
         dataRow.appendChild(avisoData);
 
+
         const colaboradorData = document.createElement('td');
         colaboradorData.textContent = cardData.colaborador;
-        colaboradorData.style.textAlign = 'center';
+        colaboradorData.style.textAlign = 'left';
         colaboradorData.style.width = '100px';
         dataRow.appendChild(colaboradorData);
+        
 
         tbody.appendChild(dataRow);
         table.appendChild(tbody);
@@ -265,25 +270,32 @@ function addCardToScreen(cardData) {
         // Calcular a diferença em dias entre a data atual e a data de criação do cartão
         const daysSinceCreation = diffDays(currentDate, creationDate);
         
-        // Verificar se passaram mais de 10 dias desde a criação do cartão e aplicar estilos correspondentes
-        if (daysSinceCreation >= 30) {
-            // Se passaram mais de 10 dias desde a criação do cartão, aplicar o estilo de cor amarela ao cardDiv
-            cardDiv.style.borderLeftColor = 'red';
-            dateData.style.color = 'red';
-
-        } else if (daysDifference >= 10) {
-            // Se passaram mais de 10 dias desde a data do cartão, adicionar a classe 'tags' ao elemento dateData e alterar a cor da borda do cardDiv para vermelho
-            dateData.style.color = '#FF8C00';
-            cardDiv.style.borderLeftColor = '#FF8C00'; 
-
-        } else if (daysDifference >= 5) {
-            // Se passaram mais de 5 dias desde a data do cartão, aplicar o estilo de cor amarela diretamente ao elemento dateData e à borda do cardDiv
-            dateData.style.color = 'green';
-            cardDiv.style.borderLeftColor = 'green';
+        if (currentDate > savedDate) {
+            const daysDifference = diffDays(currentDate, savedDate);
+        
+            if (daysDifference >= 30) {
+                // Se passaram mais de 30 dias desde a data do cartão, aplicar o estilo de cor vermelha ao cardDiv
+                cardDiv.style.borderLeftColor = 'red';
+                dateData.style.color = 'red';
+            } else if (daysDifference >= 10) {
+                // Se passaram mais de 10 dias desde a data do cartão, aplicar o estilo de cor laranja ao cardDiv
+                dateData.style.color = '#FF8C00';
+                cardDiv.style.borderLeftColor = '#FF8C00';
+            } else if (daysDifference >= 5) {
+                // Se passaram mais de 5 dias desde a data do cartão, aplicar o estilo de cor verde ao cardDiv
+                dateData.style.color = 'green';
+                cardDiv.style.borderLeftColor = 'green';
+            } else {
+                // Se passaram menos de 5 dias desde a data do cartão, aplicar o estilo de cor padrão ao cardDiv
+                dateData.style.color = 'none';
+                cardDiv.style.borderLeftColor = 'gray';
+            }
         } else {
+            // Se a data atual ainda não passou a data do cartão, manter os estilos padrão
             dateData.style.color = 'none';
             cardDiv.style.borderLeftColor = 'gray';
         }
+
 
 
     });
@@ -328,7 +340,6 @@ function closeModal() {
 }
 
 function addCardToNewCard() {
-
     showLoading();
     const type = document.getElementById('todo').dataset.type;
     const title = document.getElementById('title_card');
@@ -425,3 +436,157 @@ document.addEventListener("keydown", updateLastActivityTime);
 // Define um intervalo para verificar periodicamente a inatividade do usuário
 setInterval(checkInactivityAndLogout, 60000); // Verifica a cada minuto
 
+function truncateText(text, maxLength, maxLines) {
+    // Check if the text length is greater than the maxLength
+    if (text.length > maxLength) {
+        // Truncate the text to the maxLength
+        let truncatedText = text.substring(0, maxLength);
+
+        // Check if the text has more lines than the maxLines
+        const lines = truncatedText.split('\n');
+        if (lines.length > maxLines) {
+            // Truncate the text to the maxLines
+            truncatedText = lines.slice(0, maxLines).join('\n');
+        }
+
+        // Add ellipsis (...) at the end of the truncated text
+        truncatedText += '...';
+
+        return truncatedText;
+    } else {
+        return text;
+    }
+}
+
+function isInHomePage() {
+    // Verifica se existe um elemento com o id "home"
+    return document.getElementById('app') !== null;
+}
+
+// Função para ajustar o zoom da página
+function adjustPageZoom() {
+    // Verifica se a página está na tela inicial
+    if (isInHomePage()) {
+        // Define a escala de visualização para 80%
+        document.body.style.zoom = '80%';
+    } else {
+        // Se não estiver na página inicial, retorna para o zoom padrão (100%)
+        document.body.style.zoom = '100%';
+    }
+}
+
+// Chama a função para ajustar o zoom da página quando a página é carregada
+window.onload = adjustPageZoom;
+
+
+
+function altNameHeadKanban() {
+    const titleDrops = document.querySelectorAll('.title-dropzone');
+
+    titleDrops.forEach(dropzone => {
+        const titleDrop = dropzone.querySelector('h2');
+
+        titleDrop.addEventListener('click', () => {
+            // Torna a div editável
+            titleDrop.contentEditable = true;
+            titleDrop.focus(); // Coloca o foco na div para facilitar a edição
+            titleDrop.style.minHeight = '20px'; // Ajusta o tamanho mínimo da div
+            titleDrop.style.display = 'flex';
+            titleDrop.style.alignItems = 'center';
+            titleDrop.style.minWidth = '100px';
+
+            // Obtém o ID da div onde o h2 está contido
+            const idTitle = titleDrop.id;
+
+            // Salva o valor digitado quando o usuário sair do foco da div
+            titleDrop.addEventListener('blur', () => {
+                const newTitle = titleDrop.textContent.trim(); // Obtém o novo título digitado
+
+                // Verifica se o ID é válido antes de chamar a função saveTitle
+                if (idTitle) {
+                    saveTitle(idTitle, newTitle); // Passa o ID e o novo título para a função
+                    titleDrop.contentEditable = false; // Desabilita a edição
+                    titleDrop.style.minHeight = 'auto'; // Restaura o tamanho mínimo da div
+                } else {
+                    console.error('ID do documento ausente ou inválido.');
+                }
+            });
+        });
+
+        titleDrop.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Impede que a quebra de linha seja inserida
+                titleDrop.blur(); // Força a div a perder o foco, desencadeando o evento blur
+            }
+        });
+    });
+}
+
+function saveTitle(id, newTitle) {
+    // Atualiza o título diretamente no Firestore usando o ID do documento
+    firebase.firestore()
+        .collection('table-fluxo')
+        .doc(id)
+        .update({ title: newTitle })
+        .then(() => {
+            console.log('Título atualizado com sucesso no Firestore.');
+        })
+        .catch(error => {
+            console.error('Erro ao atualizar o título no Firestore:', error);
+        });
+}
+
+// Chama a função para tornar a div editável quando clicar no ícone de edição
+function enableEdit() {
+    altNameHeadKanban();
+}
+
+function addH2ToScreen(h2Data) {
+    const kanbanTodo = document.getElementById('table-todo');
+    const kanbanDoing = document.getElementById('table-doing');
+    const kanbanDone = document.getElementById('table-done');
+
+    h2Data.forEach(data => {
+        const titleDiv = document.createElement('div'); // Criar a div para o título
+        titleDiv.classList.add('title-dropzone'); // Adicionar a classe
+
+        const h2 = document.createElement('h2'); // Criar o h2 para o título
+        h2.textContent = data.title; // Definir o texto do h2
+        h2.id = data.id;
+
+        titleDiv.appendChild(h2); // Adicionar o h2 dentro da div de título
+
+        // Selecionar a div de dropzone correspondente
+        let dropzone;
+        if (data.type === 'todo') {
+            dropzone = kanbanTodo.querySelector('.title-dropzone.todo');
+        } else if (data.type === 'doing') {
+            dropzone = kanbanDoing.querySelector('.title-dropzone.doing');
+        } else if (data.type === 'done') {
+            dropzone = kanbanDone.querySelector('.title-dropzone.done');
+        }
+
+        // Se a dropzone existir e o tipo da tabela coincidir com o tipo da dropzone
+        if (dropzone && dropzone.classList.contains(data.type)) {
+            dropzone.appendChild(titleDiv); // Adicionar a div do título à dropzone
+        }
+    });
+}
+
+function findText() {
+    firebase.firestore()
+        .collection('table-fluxo')
+        .get()
+        .then(snapshot => {
+            const h2Data = snapshot.docs.map(doc => ({
+                type: doc.data().type, // Obter o tipo da tabela do Firebase
+                title: doc.data().title // Obter o título da tabela do Firebase
+            }));
+            addH2ToScreen(h2Data); // Chamar a função para adicionar os títulos à tela
+        })
+        .catch(error => {
+            console.error("Error getting documents: ", error);
+        });
+}
+
+findText();

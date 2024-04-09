@@ -12,11 +12,13 @@
 :root {
   font-size: 62.5%;
   font-family: "Inter", sans-serif;
+  
 }
 
 body {
   font-size: 1.6rem;
   background-color: #6495ED;
+
   
 }
 
@@ -27,7 +29,7 @@ a {
 #app {
   display: grid;
   grid-template-columns: max-content 1fr;
-
+  height: 125vh;
   min-height: 100vh;
 }
 
@@ -38,12 +40,14 @@ main .inner {
   padding: 4.8rem 3.2rem;
 }
 
+
 main {
   padding-top: 0.8rem;
 }
 
 nav {
   padding: 1rem 1rem 0 1rem;
+  height: 100%;
 
 }
 
@@ -144,12 +148,12 @@ li a {
 }
 
 
-
-a:hover{
+li > a:hover{
   border-left: 3px solid white;
   color: white;
   font-weight: 700;
 }
+
 
 
 a ion-icon {
@@ -324,24 +328,26 @@ section.kanban > * {
   padding: 2.4rem;
 }
 
-section.kanban h2 {
-  font-size: 2rem;
-  color: #403937;
-  padding: 2.4rem 0;
+section.kanban .title-dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  justify-items: center;
+  gap: 2px;
+  font-size: 1.3rem;
+  padding-bottom: 10px;
+  margin-top: 20px;
 
 }
 
+
 .card {
   padding: 18px;
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
   line-height: 100%;
   margin-bottom: 0.3rem;
   flex: 1; /* Permita que os cards cresçam para ocupar o espaço disponível */
   display: flex;
   justify-content: space-between;
-
-  
 }
 
 
@@ -356,7 +362,6 @@ section.kanban h2 {
   border: 1px solid #dddddd;
   padding: 10px
 }
-
 
 .cards {
   display: flex;
@@ -382,11 +387,9 @@ section.kanban h2 {
 
 .dropzone > .card {
   width: 100%; /* Defina o tamanho desejado */
-  height: 100%; /* Permita que a altura se ajuste automaticamente */
-  height: 1000px;
   padding: 1px 1px 1px 1px;
   flex: 1;
-  
+  max-height: 60px;
 }
 
 
@@ -399,13 +402,13 @@ section.kanban h2 {
   min-width: 200px; /* Defina a largura mínima desejada */
   min-height: 100px; /* Defina a altura mínima desejada */
   border: 1px solid #cac7c7;
-  border-radius: 9px;
   padding: 10px;
-  height: auto;
+  height: 750px;
   display: flex;
-  flex-wrap: wrap;
   width: 100%;
-  
+  overflow-x: auto;
+  max-height: 750px;
+  padding-top: 10px;
 }
 
 
@@ -440,9 +443,13 @@ section.kanban h2 {
 
 .card-t {
   border-collapse: collapse;
-  width: 511px;
   width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: white; /* Adicione um fundo branco para cobrir o conteúdo rolável por trás */
+  margin-bottom: 6px;
 }
+
 
 option{
   font-weight: 500;
@@ -452,9 +459,12 @@ option{
 
 .card-table {
   border-collapse: collapse;
-  width: 500px;
+  width: 100%;
   flex: 1;
+  max-height: 60px;
 }
+
+
 
 .card-table th {
   border: 1px solid #dddddd;
